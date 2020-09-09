@@ -10,5 +10,37 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- TODO should be included via NX -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+    <script>
+      // Firebase config
+      // TODO need to be pushed somewhere according to the NX rules
+      var firebaseConfig = {
+        apiKey: "AIzaSyBxQSxD4cPZ33wZhfPiRCsdD291GReUrp8",
+        authDomain: "ph-tasks.firebaseapp.com",
+        databaseURL: "https://ph-tasks.firebaseio.com",
+        projectId: "ph-tasks",
+        storageBucket: "ph-tasks.appspot.com",
+        messagingSenderId: "135196972161",
+        appId: "1:135196972161:web:d35d294220b01e254ba980"
+      };
+      // Initialize Firebase
+      // TODO seems like data provider initialization - where to store these data according to React vision.
+      firebase.initializeApp(firebaseConfig);
+      // TODO tasks fetch - need to be placed somewhere else
+      firebase.firestore().collection("tasks")
+        .orderBy("time","desc")
+        .onSnapshot((snaps) => {
+          // Loop through documents in database
+          snaps.forEach((doc) => {
+            console.log(doc.data().description + ": " + doc.data().time)
+          });
+        });
+
+    </script>
   </body>
 </html>
