@@ -28,6 +28,9 @@
     "ph-tasks-e2e": {
       "tags": [],
       "implicitDependencies": ["ph-tasks"]
+    },
+    "ui": {
+      "tags": []
     }
   }
 }
